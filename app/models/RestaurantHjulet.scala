@@ -4,5 +4,5 @@ class RestaurantHjulet extends Restaurant {
 
 	def name = "Hjulet"
 
-	def dishes = List("soppa", "knödel")
+	def dishes(weekday: String) = List("soppa", "knödel")
 }

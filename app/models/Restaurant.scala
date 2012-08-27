@@ -4,6 +4,6 @@ abstract class Restaurant {
 
 	def name: String
 	
-	def dishes: List[String]
+	def dishes(weekday: String): List[String]
 	
 }

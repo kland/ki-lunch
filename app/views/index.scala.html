@@ -2,13 +2,13 @@
 
 @main("Dagens lunch") {
 	
-	<h1>@weekday</h1>
+	<h1>@weekday.capitalize</h1>
 	
 	@restaurants.map { restaurant =>
 	<h2>@restaurant.name</h2>
 	
 	<ul>
-			@restaurant.dishes.map { dish =>
+			@restaurant.dishes(weekday).map { dish =>
 		<li>@dish</li>
 			}
 	</ul>
