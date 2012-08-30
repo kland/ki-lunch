@@ -5,7 +5,7 @@
 	<h1>@weekday.capitalize</h1>
 	
 	@restaurants.map { restaurant =>
-	<h2>@restaurant.name</h2>
+	<h2><a href="@restaurant.url">@restaurant.name</a></h2>
 	
 	<ul>
 			@restaurant.dishes(weekday).map { dish =>

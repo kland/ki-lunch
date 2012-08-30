@@ -1,10 +1,12 @@
 package models
 
-import models.RestaurantHjulet
-import models.RestaurantMF
+import models.{RestaurantHjulet, RestaurantMF}
 
 object Restaurants {
 
-	def all = List(new RestaurantHjulet, new RestaurantMF)
+	def all = List(
+		new RestaurantHjulet("Hjulet", "http://web.comhem.se/hjulet/matsedel2.html"), 
+		new RestaurantMF("MF", "http://www.mmcatering.nu/index.php?sajt=mf")
+	)
 
 }

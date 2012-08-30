@@ -1,8 +1,6 @@
 package models
 
-class RestaurantMF extends Restaurant {
-
-	def name = "MF"
+class RestaurantMF(override val name: String, override val url: String) extends Restaurant(name, url) {
 
 	def dishes(weekday: String) = List("kött", "fisk")
 	
