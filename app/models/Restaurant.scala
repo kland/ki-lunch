@@ -3,6 +3,7 @@ package models
 import java.io.{BufferedReader, InputStreamReader}
 import java.net.URL
 import lib.Util
+import scala.io.Source
 
 abstract class Restaurant(val name: String, val url: String) {
 
