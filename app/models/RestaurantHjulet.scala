@@ -26,6 +26,9 @@ class RestaurantHjulet(override val name: String, override val url: String) exte
 		//remove all remaining tags
 		documentPart = documentPart.replaceAll("</?[^>]*>", "")
 
+		//remove junk
+		documentPart = documentPart.replaceAll("(?i)veg(&nbsp;)*", "")
+
 		//remove leading and trailing whitespace
 		documentPart = documentPart.trim
 		
