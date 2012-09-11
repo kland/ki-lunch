@@ -16,7 +16,7 @@ class RestaurantJönsJacob extends Restaurant {
 		//extract the content between the third occurrence of `weekday' and the third occurence of `nextWeekday'
 		val pos1 = (("""(?i)\b""" + weekday + """\b(\w|\s)*""").r findAllIn document).matchData.toSeq(0).end
 		val pos2 = 
-			if (weekday != "friday")
+			if (weekday != "fredag")
 				(("""(?i)\b""" + nextWeekday + """\b""").r findAllIn document).matchData.toSeq(0).start
 			else 
 				(("""(?i)<a .*?'Boka bord på din iPhone'""").r findAllIn document).matchData.toSeq(0).start

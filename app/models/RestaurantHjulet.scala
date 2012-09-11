@@ -16,7 +16,7 @@ class RestaurantHjulet extends Restaurant {
 		//extract the content between the third occurrence of `weekday' and the third occurence of `nextWeekday'
 		val pos1 = (("""(?i)\b""" + weekday + """\b""").r findAllIn document).matchData.toSeq(2).end
 		val pos2 = 
-			if (weekday != "friday")
+			if (weekday != "fredag")
 				(("""(?i)\b""" + nextWeekday + """\b""").r findAllIn document).matchData.toSeq(2).start
 			else 
 				(("""(?i)\bveckans tips\b""").r findAllIn document).matchData.toSeq(0).start
