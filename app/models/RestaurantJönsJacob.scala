@@ -2,7 +2,11 @@ package models
 
 import lib.Util
 
-class RestaurantJönsJacob(override val name: String, override val url: String) extends Restaurant(name, url) {
+class RestaurantJönsJacob extends Restaurant {
+
+	def name = "Jöns Jacob"
+	
+	def url = "http://gastrogate.com/restaurang/jonsjacob/page/3"
 
 	def parsedDishes(document: String, weekday: String) = {
 		val nextWeekday = Util.nextWeekday(weekday)

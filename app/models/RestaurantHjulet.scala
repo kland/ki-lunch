@@ -3,7 +3,11 @@ package models
 //import scala.util.matching.Regex
 import lib.Util
 
-class RestaurantHjulet(override val name: String, override val url: String) extends Restaurant(name, url) {
+class RestaurantHjulet extends Restaurant {
+
+	def name = "Hjulet"
+	
+	def url = "http://web.comhem.se/hjulet/matsedel2.html"
 
 	def parsedDishes(document: String, weekday: String) = {		
 		val nextWeekday = Util.nextWeekday(weekday)

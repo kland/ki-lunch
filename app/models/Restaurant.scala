@@ -5,14 +5,18 @@ import java.net.URL
 import lib.Util
 import scala.io.Source
 
-abstract class Restaurant(val name: String, val url: String) {
+abstract class Restaurant {
+
+	def name: String
+	
+	def url: String
 
 	protected def parsedDishes(document: String, weekday: String): List[String]
 	
 	def dishes(weekday: String): List[String] = {
 		//get (HTML) document from URL
 		var document = ""
-		var reader = new BufferedReader(new InputStreamReader(new URL(url).openStream()))
+		var reader = new BufferedReader(new InputStreamReader(new URL(url).openStream(), "ISO-8859-1"))
 		var line = reader.readLine
 		while (line != null) {
 			document += line

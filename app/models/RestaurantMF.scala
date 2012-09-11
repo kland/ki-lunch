@@ -2,7 +2,11 @@ package models
 
 import lib.Util
 
-class RestaurantMF(override val name: String, override val url: String) extends Restaurant(name, url) {
+class RestaurantMF extends Restaurant {
+
+	def name = "MF"
+	
+	def url = "http://www.mmcatering.nu/index.php?sajt=mf"
 
 	def parsedDishes(document: String, weekday: String) = {
 		if (weekday == Util.currentWeekday) {
