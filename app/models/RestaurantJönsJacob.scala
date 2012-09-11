@@ -8,6 +8,8 @@ class RestaurantJönsJacob extends Restaurant {
 	
 	def url = "http://gastrogate.com/restaurang/jonsjacob/page/3"
 
+	override def charset = "ISO-8859-1"
+
 	def parsedDishes(document: String, weekday: String) = {
 		val nextWeekday = Util.nextWeekday(weekday)
 

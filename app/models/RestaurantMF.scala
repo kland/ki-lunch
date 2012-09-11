@@ -8,6 +8,8 @@ class RestaurantMF extends Restaurant {
 	
 	def url = "http://www.mmcatering.nu/index.php?sajt=mf"
 
+	override def charset = "ISO-8859-1"
+
 	def parsedDishes(document: String, weekday: String) = {
 		if (weekday == Util.currentWeekday) {
 			//extract the content between the third occurrence of `weekday' and the third occurence of `nextWeekday'

@@ -1,39 +1,36 @@
 package models
 
-//import scala.util.matching.Regex
 import lib.Util
 
-class RestaurantHjulet extends Restaurant {
+class RestaurantKönigs extends Restaurant {
 
-	def name = "Hjulet"
+	def name = "Königs"
 	
-	def url = "http://web.comhem.se/hjulet/matsedel2.html"
-	
-	override def charset = "ISO-8859-1"
+	def url = "http://restaurangkonigs.se"
 
-	def parsedDishes(document: String, weekday: String) = {		
+	def parsedDishes(document: String, weekday: String) = {
 		val nextWeekday = Util.nextWeekday(weekday)
 
 		//extract the content between the third occurrence of `weekday' and the third occurence of `nextWeekday'
-		val pos1 = (("""(?i)\b""" + weekday + """\b""").r findAllIn document).matchData.toSeq(2).end
+		val pos1 = (("""(?i)<h3><strong>""" + weekday + """:</strong></h3>(\w|\s)*""").r findAllIn document).matchData.toSeq(0).end
 		val pos2 = 
 			if (weekday != "friday")
-				(("""(?i)\b""" + nextWeekday + """\b""").r findAllIn document).matchData.toSeq(2).start
+				(("""(?i)<h3>""" + nextWeekday + """:</h3>""").r findAllIn document).matchData.toSeq(0).start
 			else 
-				(("""(?i)\bveckans tips\b""").r findAllIn document).matchData.toSeq(0).start
+				(("""(?i)<strong>Dagens rätt\b""").r findAllIn document).matchData.toSeq(0).start
 		var documentPart = document.substring(pos1, pos2)
 
 		//replace each newline with a space
 		documentPart = documentPart.replace('\n', ' ')
 		
 		//replace each <br> with a newline
-		documentPart = documentPart.replaceAll("(?i)<br>", "\n")
+		documentPart = documentPart.replaceAll("(?i)<br */?>", "\n")
 
 		//remove all remaining tags
 		documentPart = documentPart.replaceAll("</?[^>]*>", "")
 
-		//remove junk
-		documentPart = documentPart.replaceAll("(?i)veg(&nbsp;)*", "")
+		//remove multiple newlines
+		documentPart = documentPart.replaceAll("""\n\s*""", "\n")
 
 		//remove leading and trailing whitespace
 		documentPart = documentPart.trim
