@@ -16,13 +16,8 @@ abstract class Restaurant {
 	
 	def dishes(weekday: String): List[String] = {
 		//get (HTML) document from URL
-		var document = ""
-		var reader = new BufferedReader(new InputStreamReader(new URL(url).openStream(), charset))
-		var line = reader.readLine
-		while (line != null) {
-			document += line
-			line = reader.readLine
-		}
+		val inputStream = new URL(url).openStream()
+		val document = Source.fromInputStream(inputStream, charset).mkString("")
 		
 		parsedDishes(document, weekday)
 	}
