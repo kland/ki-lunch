@@ -1,6 +1,6 @@
 package models
 
-import models.{RestaurantHjulet, RestaurantJönsJacob, RestaurantKönigs, RestaurantMF}
+//import models.{RestaurantHjulet, RestaurantJönsJacob, RestaurantKönigs, RestaurantMF, RestaurantMollan}
 
 object Restaurants {
 
@@ -8,6 +8,7 @@ object Restaurants {
 		new RestaurantHjulet, 
 		new RestaurantJönsJacob, 
 		new RestaurantKönigs, 
-		new RestaurantMF
+		new RestaurantMF,
+		new RestaurantMollan
 	)
 }

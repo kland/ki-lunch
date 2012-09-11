@@ -1,6 +1,5 @@
 package models
 
-//import scala.util.matching.Regex
 import lib.Util
 
 class RestaurantHjulet extends Restaurant {
