@@ -10,9 +10,9 @@ class RestaurantMF extends Restaurant {
 
 	override def charset = "ISO-8859-1"
 	
-	def parseBegin(weekday: String) = "(?i)<a id=\"meny\"[^>]*>"
+	def startPattern(weekday: String) = "(?i)<a id=\"meny\"[^>]*>"
 
-	def parseEnd(weekday: String) = "(?i)<img src=\"mmcatering/graphics/mf/startsidan/imorgonServeras.gif\""
+	def endPattern(weekday: String) = "(?i)<img src=\"mmcatering/graphics/mf/startsidan/imorgonServeras.gif\""
 
 	def dishSeparator = "<br */?>"
 

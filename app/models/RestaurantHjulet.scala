@@ -10,11 +10,11 @@ class RestaurantHjulet extends Restaurant {
 	
 	override def charset = "ISO-8859-1"
 
-	def parseBegin(weekday: String) = "<h4>(<BR>)?" + weekday.toUpperCase
+	def startPattern(weekday: String) = "<h4>(<BR>)?" + weekday.toUpperCase
 
-	def parseEnd(weekday: String) =
+	def endPattern(weekday: String) =
 		if (weekday != "fredag") 
-			parseBegin(Util.nextWeekday(weekday))
+			startPattern(Util.nextWeekday(weekday))
 		else
 			"VECKANS TIPS"
 

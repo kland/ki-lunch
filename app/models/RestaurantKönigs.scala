@@ -8,11 +8,11 @@ class RestaurantKönigs extends Restaurant {
 	
 	def url = "http://restaurangkonigs.se"
 
-	def parseBegin(weekday: String) = """(?i)<h3>(<strong>)?""" + weekday + """:(</strong>)?</h3>"""
+	def startPattern(weekday: String) = """(?i)<h3>(<strong>)?""" + weekday + """:(</strong>)?</h3>"""
 
-	def parseEnd(weekday: String) =
+	def endPattern(weekday: String) =
 		if (weekday != "fredag") 
-			parseBegin(Util.nextWeekday(weekday))
+			startPattern(Util.nextWeekday(weekday))
 		else
 			"""(?i)<strong>Dagens rätt\b"""
 

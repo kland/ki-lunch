@@ -10,11 +10,11 @@ class RestaurantMollan extends Restaurant {
 	
 	override def charset = "ISO-8859-1"
 
-	def parseBegin(weekday: String) = """(?i)\b""" + weekday + """\b"""
+	def startPattern(weekday: String) = """(?i)\b""" + weekday + """\b"""
 
-	def parseEnd(weekday: String) = 
+	def endPattern(weekday: String) = 
 		if (weekday != "fredag")
-			parseBegin(Util.nextWeekday(weekday))
+			startPattern(Util.nextWeekday(weekday))
 		else
 			"""(?i)\bSushi ---Se Sushi Meny\b"""
 

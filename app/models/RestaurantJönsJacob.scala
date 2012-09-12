@@ -10,11 +10,11 @@ class RestaurantJönsJacob extends Restaurant {
 
 	override def charset = "ISO-8859-1"
 
-	def parseBegin(weekday: String) = """(?i)\b""" + weekday + """\b(\w|\s)*"""
+	def startPattern(weekday: String) = """(?i)\b""" + weekday + """\b(\w|\s)*"""
 
-	def parseEnd(weekday: String) =
+	def endPattern(weekday: String) =
 		if (weekday != "fredag") 
-			parseBegin(Util.nextWeekday(weekday))
+			startPattern(Util.nextWeekday(weekday))
 		else
 			"""(?i)<a .*?'Boka bord på din iPhone'"""
 
