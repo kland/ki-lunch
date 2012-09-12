@@ -21,7 +21,7 @@ abstract class Restaurant {
 	protected def cleanupPattern = "" //regular expression matching strings that should be removed from the output
 	
 	
-	private def dishesPart(document: String, weekday: String): String = { //returns a substring of the source document that contains the menu for the weekday
+	private def menuPart(document: String, weekday: String): String = { //returns a substring of the source document that contains the menu for the weekday
 
 		//find position of string matched by start pattern
 		val startMatch = startPattern(weekday).r findAllIn document
@@ -46,12 +46,12 @@ abstract class Restaurant {
 	}
 	
 	
-	def dishes(weekday: String): List[String] = { //returns the menu for the weekday
+	def menu(weekday: String): List[String] = { //returns the menu for the weekday
 		try {
 			//get HTML document from URL
 			val inputStream = new URL(url).openStream()		
 			val document = Source.fromInputStream(inputStream, charset).mkString("")
-			var documentPart = dishesPart(document, weekday)		
+			var documentPart = menuPart(document, weekday)		
 
 			//replace each newline with a space
 			documentPart = documentPart.replace('\n', ' ')

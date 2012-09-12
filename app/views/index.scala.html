@@ -17,7 +17,7 @@
 	<h2><a href="@restaurant.url" class="notranslate">@restaurant.name</a></h2>
 	
 	<ul>
-			@restaurant.dishes(weekday).map { dish =>
+			@restaurant.menu(weekday).map { dish =>
 		<li>@dish</li>
 			}
 	</ul>
