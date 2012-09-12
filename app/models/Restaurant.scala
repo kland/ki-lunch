@@ -6,24 +6,22 @@ import scala.io.Source
 
 abstract class Restaurant {
 
-	def name: String
+	def name: String //name of the restaurant
 	
-	def url: String //url for the menu
+	def url: String //url for the source menu
 	
-	protected def charset = "UTF-8" //character encoding of the menu at url
+	protected def charset = "UTF-8" //character encoding of the source menu
 
-	protected def startPattern(weekday: String): String
+	protected def startPattern(weekday: String): String //regular expression matching the start of the menu for the weekday
 	
-	protected def endPattern(weekday: String): String
+	protected def endPattern(weekday: String): String //regular expression matching the end of the menu for the weekday
 
-	protected def dishSeparator: String
+	protected def dishSeparator: String //regular expression matching the separator for the dishes (e.g. <br>)
 	
-	protected def cleanupPattern = ""
+	protected def cleanupPattern = "" //regular expression matching strings that should be removed from the output
 	
 	
-	//returns a substring of the HTML document that contains the dishes of the weekday
-	
-	private def dishesPart(document: String, weekday: String): String = {
+	private def dishesPart(document: String, weekday: String): String = { //returns a substring of the source document that contains the menu for the weekday
 
 		//find position of string matched by start pattern
 		val startMatch = startPattern(weekday).r findAllIn document
@@ -48,7 +46,7 @@ abstract class Restaurant {
 	}
 	
 	
-	def dishes(weekday: String): List[String] = {
+	def dishes(weekday: String): List[String] = { //returns the menu for the weekday
 		try {
 			//get HTML document from URL
 			val inputStream = new URL(url).openStream()		
