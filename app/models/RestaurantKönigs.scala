@@ -8,14 +8,14 @@ class RestaurantKönigs extends Restaurant {
 	
 	def url = "http://restaurangkonigs.se"
 
-	def startPattern(weekday: String) = """(?i)<h3>(<strong>)?""" + weekday + """:(</strong>)?</h3>"""
+	protected def startPattern(weekday: String) = """(?i)<h3>(<strong>)?""" + weekday + """:(</strong>)?</h3>"""
 
-	def endPattern(weekday: String) =
+	protected def endPattern(weekday: String) =
 		if (weekday != "fredag") 
 			startPattern(Util.nextWeekday(weekday))
 		else
 			"""(?i)<strong>Dagens rätt\b"""
 
-	def dishSeparator = "<br */?>"
+	protected def dishSeparator = "<br */?>"
 	
 }
