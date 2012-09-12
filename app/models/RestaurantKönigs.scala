@@ -8,34 +8,14 @@ class RestaurantKönigs extends Restaurant {
 	
 	def url = "http://restaurangkonigs.se"
 
-	def parsedDishes(document: String, weekday: String) = {
-		val nextWeekday = Util.nextWeekday(weekday)
+	def parseBegin(weekday: String) = """(?i)<h3>(<strong>)?""" + weekday + """:(</strong>)?</h3>"""
 
-		//extract the content between the third occurrence of `weekday' and the third occurence of `nextWeekday'
-		val pos1 = (("""(?i)<h3><strong>""" + weekday + """:</strong></h3>(\w|\s)*""").r findAllIn document).matchData.toSeq(0).end
-		val pos2 = 
-			if (weekday != "fredag")
-				(("""(?i)<h3>""" + nextWeekday + """:</h3>""").r findAllIn document).matchData.toSeq(0).start
-			else 
-				(("""(?i)<strong>Dagens rätt\b""").r findAllIn document).matchData.toSeq(0).start
-		var documentPart = document.substring(pos1, pos2)
+	def parseEnd(weekday: String) =
+		if (weekday != "fredag") 
+			parseBegin(Util.nextWeekday(weekday))
+		else
+			"""(?i)<strong>Dagens rätt\b"""
 
-		//replace each newline with a space
-		documentPart = documentPart.replace('\n', ' ')
-		
-		//replace each <br> with a newline
-		documentPart = documentPart.replaceAll("(?i)<br */?>", "\n")
-
-		//remove all remaining tags
-		documentPart = documentPart.replaceAll("</?[^>]*>", "")
-
-		//remove multiple newlines
-		documentPart = documentPart.replaceAll("""\n\s*""", "\n")
-
-		//remove leading and trailing whitespace
-		documentPart = documentPart.trim
-		
-		//split at linebreaks into a list of dishes
-		documentPart.split("\n").toList
-	}
+	def dishSeparator = "<br */?>"
+	
 }
