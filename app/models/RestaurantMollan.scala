@@ -16,7 +16,7 @@ class RestaurantMollan extends Restaurant {
 		if (weekday != "fredag")
 			startPattern(Util.nextWeekday(weekday))
 		else
-			"""(?i)\bSushi ---Se Sushi Meny\b"""
+			"""\bG.=Gluten\b"""
 
 	protected def dishSeparator = """(?i)<p\b[^>]*><font\b[^>]*><span\b[^>]*><span\b[^>]*>[A-Z]\."""
 
