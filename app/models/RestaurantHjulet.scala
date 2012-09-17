@@ -20,6 +20,6 @@ class RestaurantHjulet extends Restaurant {
 
 	protected def dishSeparator = "<BR>"
 	
-	override protected def cleanupPattern = "VEG(&nbsp;)*"
+	override protected def cleanupPattern = "VEG *(&nbsp;)*"
 
 }
