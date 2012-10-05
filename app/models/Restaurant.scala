@@ -47,10 +47,15 @@ abstract class Restaurant {
 	
 	
 	def menu(weekday: String): List[String] = { //returns the menu for the weekday
+		val connectTimeout = 2000 //milliseconds
+		val readTimeout = 1000 //milliseconds
+
 		try {
 			//get HTML document from URL
-			val inputStream = new URL(url).openStream()		
-			val document = Source.fromInputStream(inputStream, charset).mkString("")
+			val urlCon = (new URL(url)).openConnection()
+			urlCon.setConnectTimeout(connectTimeout)
+			urlCon.setReadTimeout(readTimeout)
+			val document = Source.fromInputStream(urlCon.getInputStream, charset).mkString("")
 			var documentPart = menuPart(document, weekday)		
 
 			//replace each newline with a space
