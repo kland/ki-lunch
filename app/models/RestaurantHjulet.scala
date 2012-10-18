@@ -1,7 +1,5 @@
 package models
 
-import lib.Util
-
 class RestaurantHjulet extends Restaurant {
 
 	def name = "Hjulet"
@@ -14,7 +12,7 @@ class RestaurantHjulet extends Restaurant {
 
 	protected def endPattern(weekday: String) =
 		if (weekday != "fredag") 
-			startPattern(Util.nextWeekday(weekday))
+			startPattern(lib.Util.nextWeekday(weekday))
 		else
 			"VECKANS TIPS"
 

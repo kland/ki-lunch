@@ -1,7 +1,5 @@
 package models
 
-import lib.Util
-
 class RestaurantMF extends Restaurant {
 
 	def name = "MF"

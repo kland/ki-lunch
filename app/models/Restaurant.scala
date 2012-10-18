@@ -1,8 +1,7 @@
 package models
 
-import java.io.{BufferedReader, InputStreamReader}
-import java.net.URL
-import scala.io.Source
+import java.net
+import scala.io
 
 abstract class Restaurant {
 
@@ -52,10 +51,10 @@ abstract class Restaurant {
 
 		try {
 			//get HTML document from URL
-			val urlCon = (new URL(url)).openConnection()
+			val urlCon = (new net.URL(url)).openConnection()
 			urlCon.setConnectTimeout(connectTimeout)
 			urlCon.setReadTimeout(readTimeout)
-			val document = Source.fromInputStream(urlCon.getInputStream, charset).mkString("")
+			val document = io.Source.fromInputStream(urlCon.getInputStream, charset).mkString("")
 			var documentPart = menuPart(document, weekday)		
 
 			//replace each newline with a space

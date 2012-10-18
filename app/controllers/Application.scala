@@ -1,15 +1,12 @@
 package controllers
 
-import lib.Util
-import models.Restaurants
-import play.api._
-import play.api.mvc._
+import play.api.mvc
 
-object Application extends Controller {
+object Application extends mvc.Controller {
 
-	def index = Action {
-		val weekday = Util.currentWeekday
-		val restaurants = Restaurants.all
+	def index = mvc.Action {
+		val weekday = lib.Util.currentWeekday
+		val restaurants = models.Restaurants.all
 		Ok(views.html.index(weekday, restaurants))
 	}
 

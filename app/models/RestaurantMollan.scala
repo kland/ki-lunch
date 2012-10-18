@@ -1,7 +1,5 @@
 package models
 
-import lib.Util
-
 class RestaurantMollan extends Restaurant {
 
 	def name = "Mollan Asian Kök"
@@ -14,7 +12,7 @@ class RestaurantMollan extends Restaurant {
 
 	protected def endPattern(weekday: String) = 
 		if (weekday != "fredag")
-			startPattern(Util.nextWeekday(weekday))
+			startPattern(lib.Util.nextWeekday(weekday))
 		else
 			"""\bG.=Gluten\b"""
 

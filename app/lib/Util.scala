@@ -1,14 +1,13 @@
 package lib
 
-import java.text.SimpleDateFormat
-import java.util.Calendar
-import java.util.Locale
+import java.text
+import java.util
 
 object Util {
 
 	def currentWeekday = {
-		val today = Calendar.getInstance().getTime()
-		val weekdayFormat = new SimpleDateFormat("EEEE", new Locale("sv"))
+		val today = util.Calendar.getInstance().getTime()
+		val weekdayFormat = new text.SimpleDateFormat("EEEE", new util.Locale("sv"))
 		weekdayFormat.format(today)
 	}
 	
