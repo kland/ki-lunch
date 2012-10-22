@@ -2,6 +2,7 @@ package models
 
 import java.net
 import scala.io
+import scala.util.matching
 
 abstract class Restaurant {
 
@@ -23,18 +24,16 @@ abstract class Restaurant {
 	private def menuPart(document: String, weekday: String): String = { //returns a substring of the source document that contains weekday's menu
 
 		//find position of string matched by start pattern
-		val startMatch = startPattern(weekday).r findAllIn document
-		if (! startMatch.hasNext) {
-			throw new Exception("Start pattern not found: " + startPattern(weekday))
+		val startPos = startPattern(weekday).r findFirstMatchIn document match {
+			case Some(m) => m.end
+			case None => throw new Exception("Start pattern not found: " + startPattern(weekday))
 		}
-		val startPos = startMatch.matchData.toSeq(0).end
 		
 		//find position of string matched by end pattern
-		val endMatch = endPattern(weekday).r findAllIn document
-		if (! endMatch.hasNext) {
-			throw new Exception("End pattern not found: " + startPattern(weekday))
+		val endPos = endPattern(weekday).r findFirstMatchIn document match {
+			case Some(m) => m.start
+			case None => throw new Exception("End pattern not found: " + startPattern(weekday))
 		}
-		val endPos = endMatch.matchData.toSeq(0).start
 		
 		//make sure the positions make sense
 		if (! ((startPos <= endPos) && (endPos < document.length))) {
