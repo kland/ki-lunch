@@ -1,6 +1,7 @@
 package models
 
 import java.net
+import java.nio.{charset => chrset} //avoid name clash with class attribute
 import scala.io
 import scala.util.matching
 
@@ -45,15 +46,13 @@ abstract class Restaurant {
 	
 	
 	def menu(weekday: String): List[String] = { //returns the menu for the weekday
-		val connectTimeout = 2000 //milliseconds
-		val readTimeout = 1000 //milliseconds
-
 		try {
 			//get HTML document from URL
-			val urlCon = (new net.URL(url)).openConnection()
-			urlCon.setConnectTimeout(connectTimeout)
-			urlCon.setReadTimeout(readTimeout)
-			val document = io.Source.fromInputStream(urlCon.getInputStream, charset).mkString("")
+			val codec = io.Codec(charset).onMalformedInput(chrset.CodingErrorAction.IGNORE)
+			val source = io.Source.fromURL(new net.URL(url))(codec)
+			val document = source.mkString
+			source.close
+
 			var documentPart = menuPart(document, weekday)		
 
 			//replace each newline with a space

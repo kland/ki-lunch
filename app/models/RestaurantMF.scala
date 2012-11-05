@@ -4,14 +4,16 @@ class RestaurantMF extends Restaurant {
 
 	def name = "MF"
 	
-	def url = "http://www.mmcatering.nu/index.php?sajt=mf"
+	def url = "http://mmcatering.nu/mfs-kafe-kok/meny"
 
-	override protected def charset = "ISO-8859-1"
-	
-	protected def startPattern(weekday: String) = "(?i)<a id=\"meny\"[^>]*>"
+	protected def startPattern(weekday: String) = "(?i)<h6>" + weekday + "</h6>"
 
-	protected def endPattern(weekday: String) = "(?i)<img src=\"mmcatering/graphics/mf/startsidan/imorgonServeras.gif\""
+	protected def endPattern(weekday: String) =
+		if (weekday != "fredag") 
+			startPattern(lib.Util.nextWeekday(weekday))
+		else
+			"<div id=\"primary\">"
 
-	protected def dishSeparator = "<br */?>"
+	protected def dishSeparator = """<p>\s*</p>"""
 
 }
