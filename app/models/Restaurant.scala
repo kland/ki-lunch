@@ -33,7 +33,7 @@ abstract class Restaurant {
 		//find position of string matched by end pattern
 		val endPos = endPattern(weekday).r findFirstMatchIn document match {
 			case Some(m) => m.start
-			case None => throw new Exception("End pattern not found: " + startPattern(weekday))
+			case None => throw new Exception("End pattern not found: " + endPattern(weekday))
 		}
 		
 		//make sure the positions make sense
