@@ -12,10 +12,10 @@ class RestaurantJönsJacob extends Restaurant {
 		if (weekday != "fredag") 
 			startPattern(lib.Util.nextWeekday(weekday))
 		else
-			"""(?i)<a .*?'Boka bord på din iPhone'"""
+			"""<div class="restright grid_6">"""
 
-	protected def dishSeparator = "<br */?>"
+	protected def dishSeparator = """<br */?>|</td>"""
 	
-	override protected def cleanupPattern = """(?m)\d+:-|^\s*(Dagens .*|Soppa|Vegetariskt)\s*$""" //removal of prices and headings
+	override protected def cleanupPattern = """(?im)^\s*(\d+:-|A la Minute|Dagens\s+\S+|Soppa|Vegetariskt)\s*$""" //removal of prices and headings
 
 }
