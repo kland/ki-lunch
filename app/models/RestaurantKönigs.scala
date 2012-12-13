@@ -6,7 +6,7 @@ class RestaurantKönigs extends Restaurant {
 	
 	def url = "http://restaurangkonigs.se"
 
-	protected def startPattern(weekday: String) = """(?i)<h3>(<strong>)?""" + weekday + """:(</strong>)?</h3>"""
+	protected def startPattern(weekday: String) = """(?i)<h3>.*?\b""" + weekday + """\b.*?</h3>"""
 
 	protected def endPattern(weekday: String) =
 		if (weekday != "fredag") 
