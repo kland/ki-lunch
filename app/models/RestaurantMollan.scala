@@ -16,7 +16,7 @@ class RestaurantMollan extends Restaurant {
 		else
 			"""\bG.=Gluten\b"""
 
-	protected def dishSeparator = """(?i)<p\b[^>]*><font\b[^>]*><span\b[^>]*><span\b[^>]*>[A-Z]\."""
+	protected def dishSeparator = "\n"
 
 	override protected def cleanupPattern = """(&nbsp;)+"""
 
