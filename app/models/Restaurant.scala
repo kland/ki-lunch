@@ -80,7 +80,7 @@ abstract class Restaurant {
 			
 		} catch {
 			case e: Exception => {
-				System.err.printf("In class %s: %s", this.getClass.getName, e)
+				System.err.printf("In class %s: %s\n", this.getClass.getName, e)
 				List()
 			}
 		}
