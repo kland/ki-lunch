@@ -12,7 +12,7 @@ class RestaurantMF extends Restaurant {
 		if (weekday != "fredag") 
 			startPattern(lib.Util.nextWeekday(weekday))
 		else
-			"<strong>Pris"
+			"""\bPris\b"""
 
 	protected def dishSeparator = """<br\s*/?>"""
 
