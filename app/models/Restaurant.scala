@@ -55,11 +55,13 @@ abstract class Restaurant {
 
 			var documentPart = menuPart(document, weekday)		
 
-			//replace each newline with a space
-			documentPart = documentPart.replace('\n', ' ')
+			if (dishSeparator != "\n") {
+				//remove all newlines
+				documentPart = documentPart.replaceAll("\n", "")
 
-			//replace each dishSeparator with a newline
-			documentPart = documentPart.replaceAll(dishSeparator, "\n")
+				//replace each dishSeparator with a newline
+				documentPart = documentPart.replaceAll(dishSeparator, "\n")
+			}
 
 			//remove all remaining tags
 			documentPart = documentPart.replaceAll("</?[^>]*>", "")
