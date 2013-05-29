@@ -5,7 +5,9 @@ class RestaurantJönsJacob extends Restaurant {
 	def name = "Jöns Jacob"
 	
 	def url = "http://gastrogate.com/restaurang/jonsjacob/page/3"
-
+	
+	override protected def charset = "ISO-8859-1"
+	
 	protected def startPattern(weekday: String) = """(?i)\b""" + weekday + """\b(\w|\s)*"""
 
 	protected def endPattern(weekday: String) =
